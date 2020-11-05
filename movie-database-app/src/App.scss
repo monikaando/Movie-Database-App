@@ -5,6 +5,9 @@
   width: 100vw;
   &__container {
     width: 55%;
+    @media screen and (max-width: 768px) {
+      width: 95%;
+    }
     margin: 0 auto;
     .searchbar{
       background-color: rgb(255, 255, 255);
