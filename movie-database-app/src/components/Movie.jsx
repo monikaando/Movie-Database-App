@@ -13,19 +13,21 @@ export default class Movie extends React.Component {
 		};
 		this.displayMovieDetails = this.displayMovieDetails.bind(this);
 	}
-	displayMovieDetails() {
+	displayMovieDetails(id) {
 		axios({
 			method: 'GET',
-			url: `http://www.omdbapi.com/?apikey=9831d2b3&i=${this.state.movieId}`,
+			url: `http://www.omdbapi.com/?apikey=9831d2b3&i=${id}`,
 		})
 			.then((res) => {
 				this.setState({
-					movieById: res,
+					movieById: res.data,
+					detailsButtonClicked: true,
 				});
 			})
 			.catch((err) => {
 				console.log('No movies here');
 			});
+		console.log(this.state.movieByID);
 	}
 	render() {
 		return (
@@ -43,13 +45,15 @@ export default class Movie extends React.Component {
 						<h6>{item.Year}</h6>
 						<Button
 							variant="primary"
-							onClick={() => {
-								this.setState({
-									movieId: item.imdbID,
-									detailsButtonClicked: !this.state.detailsButtonClicked,
-								});
-								console.log(this.state.movieId);
-							}}
+							// onChange={() => {
+							// 	this.setState({
+							// 		movieId: item.imdbID,
+							// 		detailsButtonClicked: !this.state.detailsButtonClicked,
+							// 	});
+							// 	console.log(this.state.movieId);
+							// }}
+
+							onClick={() => this.displayMovieDetails(item.imdbID)}
 						>
 							Details
 						</Button>
