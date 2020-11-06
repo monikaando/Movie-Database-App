@@ -21,7 +21,8 @@ export default class Movie extends React.Component {
 			.then((res) => {
 				this.setState({
 					movieById: res.data,
-					detailsButtonClicked: true,
+					detailsButtonClicked: !this.state.detailsButtonClicked,
+					movieId: id,
 				});
 			})
 			.catch((err) => {
@@ -32,29 +33,22 @@ export default class Movie extends React.Component {
 	render() {
 		return (
 			<div>
-				{this.state.detailsButtonClicked === true ? (
+				{this.props.searchButtonClicked === true ? (
 					<div>
-						<MovieDetails movieById={this.state.movieById} />
+						<Button onClick={this.props.buttonPreviousPageClicked}>Previous page</Button>
+						<Button onClick={this.props.buttonNextPageClicked}>Next page</Button>
+						<h4>Search results: {this.props.totalResults}</h4>{' '}
 					</div>
 				) : null}
-				{this.props.searchButtonClicked === true ? <h4>Search results: {this.props.totalResults}</h4> : null}
 				{this.props.moviesByName.map((item, i) => (
 					<div key={i}>
-						<img src={item.Poster} alt="movie-poster" />
+						{item.Poster !== 'N/A' ? <img src={item.Poster} alt="" /> : <p>No image</p>}
 						<h4>{item.Title}</h4>
+						{this.state.detailsButtonClicked === true && item.imdbID === this.state.movieId ? (
+							<MovieDetails movieById={this.state.movieById} />
+						) : null}
 						<h6>{item.Year}</h6>
-						<Button
-							variant="primary"
-							// onChange={() => {
-							// 	this.setState({
-							// 		movieId: item.imdbID,
-							// 		detailsButtonClicked: !this.state.detailsButtonClicked,
-							// 	});
-							// 	console.log(this.state.movieId);
-							// }}
-
-							onClick={() => this.displayMovieDetails(item.imdbID)}
-						>
+						<Button variant="primary" onClick={() => this.displayMovieDetails(item.imdbID)}>
 							Details
 						</Button>
 					</div>

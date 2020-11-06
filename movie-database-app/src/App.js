@@ -16,12 +16,16 @@ class App extends React.Component {
 			moviesByName: [],
 			totalResults: 0,
 			searchButtonClicked: false,
+			page: 1,
+			numberOfPages: 0,
 		};
 		this.movieTitleInputHandler = this.movieTitleInputHandler.bind(this);
-		this.getMoviesBytitle = this.getMoviesBytitle.bind(this);
+		this.getMoviesByTitle = this.getMoviesByTitle.bind(this);
+		this.buttonPreviousPageClicked = this.buttonPreviousPageClicked.bind(this);
+		this.buttonNextPageClicked = this.buttonNextPageClicked.bind(this);
 	}
 	displayMovies = () => {
-		this.getMoviesBytitle();
+		this.getMoviesByTitle();
 		this.setState({
 			displayMovies: !this.state.displayMovies,
 			searchClicked: !this.state.searchClicked,
@@ -34,10 +38,10 @@ class App extends React.Component {
 			searchByTitle: input.toLowerCase(),
 		});
 	}
-	getMoviesBytitle() {
+	getMoviesByTitle() {
 		axios({
 			method: 'GET',
-			url: `http://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle}&page=1`,
+			url: `http://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle}&page=${this.state.page}`,
 			// ${this.state.page}
 		})
 			.then((res) => {
@@ -45,13 +49,24 @@ class App extends React.Component {
 					moviesByName: res.data.Search,
 					totalResults: res.data.totalResults,
 					searchButtonClicked: !this.statesearchButtonClicked,
-
-					// numberOfPages: res.data.numberOfPages,
+					numberOfPages: this.state.totalResults / 10,
 				});
 			})
 			.catch((err) => {
 				console.log('No movies here');
 			});
+	}
+	buttonPreviousPageClicked() {
+		this.setState({
+			page: this.state.page - 1,
+		});
+		this.getMoviesByTitle();
+	}
+	buttonNextPageClicked() {
+		this.setState({
+			page: this.state.page + 1,
+		});
+		this.getMoviesByTitle();
 	}
 
 	render() {
@@ -67,8 +82,9 @@ class App extends React.Component {
 				<div className="App__container">
 					<div className="content mt-4">
 						{this.state.searchButtonClicked === false ? <Home /> : null}
-
 						<Movie
+							buttonPreviousPageClicked={this.buttonPreviousPageClicked}
+							buttonNextPageClicked={this.buttonNextPageClicked}
 							moviesByName={this.state.moviesByName}
 							totalResults={this.state.totalResults}
 							searchButtonClicked={this.state.searchButtonClicked}
