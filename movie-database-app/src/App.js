@@ -2,7 +2,6 @@ import React from 'react';
 import './App.scss';
 import Searchbar from './components/Searchbar';
 import Home from './components/Home';
-import MovieDetails from './components/MovieDetails';
 import Movie from './components/Movie';
 import MadeBy from './components/MadeBy';
 import axios from 'axios';
@@ -16,7 +15,7 @@ class App extends React.Component {
 			searchByTitle: '',
 			moviesByName: [],
 			totalResults: 0,
-			moviesById: [],
+			searchButtonClicked: false,
 		};
 		this.movieTitleInputHandler = this.movieTitleInputHandler.bind(this);
 		this.getMoviesBytitle = this.getMoviesBytitle.bind(this);
@@ -45,31 +44,14 @@ class App extends React.Component {
 				this.setState({
 					moviesByName: res.data.Search,
 					totalResults: res.data.totalResults,
+					searchButtonClicked: !this.statesearchButtonClicked,
 
 					// numberOfPages: res.data.numberOfPages,
 				});
-				debugger;
 			})
 			.catch((err) => {
 				console.log('No movies here');
 			});
-	}
-	displayMoviesDetails() {
-		axios({
-			method: 'GET',
-			url: `http://www.omdbapi.com/?apikey=9831d2b3&i=${this.state.movieId}`,
-			// ${this.state.page}
-		})
-			.then((res) => {
-				this.setState({
-					moviesById: res,
-				});
-				debugger;
-			})
-			.catch((err) => {
-				console.log('No movies here');
-			});
-		console.log(this.state.totalResults);
 	}
 
 	render() {
@@ -84,12 +66,12 @@ class App extends React.Component {
 				</div>
 				<div className="App__container">
 					<div className="content mt-4">
-						<Home />
-						<MovieDetails moviesById={this.state.moviesById} />
+						{this.state.searchButtonClicked === false ? <Home /> : null}
+
 						<Movie
 							moviesByName={this.state.moviesByName}
 							totalResults={this.state.totalResults}
-							displayMoviesDetails={this.displayMoviesDetails}
+							searchButtonClicked={this.state.searchButtonClicked}
 						/>
 
 						{/* <div className="alert alert-danger" role="alert">

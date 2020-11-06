@@ -3,7 +3,7 @@ import '../styles/MadeBy.scss';
 
 const MadeBy = () => {
 	return (
-		<div className="made-by text-dark fixed-bottom text-center mr-3">
+		<div className="made-by text-dark fixed-bottom text-left mr-3">
 			<p className="p-2 m-0">
 				Created by{' '}
 				<a
