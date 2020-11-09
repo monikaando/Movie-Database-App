@@ -1,9 +1,19 @@
-.movie {
-
-    .movie-details {
-        width: 70%;
-        .year {
-            color: var(--color-dark-gray) !important;
+.box {
+    width: 100%;
+    &__movie {
+        width: 49%;
+        height: auto;
+        &__poster {
+            background-color: var(--color-medium-gray) !important;
+            img {
+                 width: 100%;   
+            }
+        }
+        &__details {
+            width: 60%;
+            &__year {
+                color: var(--color-dark-gray) !important;
+            }
         }
     }
 }

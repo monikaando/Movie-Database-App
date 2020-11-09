@@ -1,4 +1,6 @@
 import React from 'react';
+import MadeBy from './MadeBy';
+
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import '../styles/Searchbar.scss';
 
@@ -10,6 +12,7 @@ class Searchbar extends React.Component {
 					<Navbar.Brand href="/" className="font-weight-bold">
 						OMDB Search
 					</Navbar.Brand>
+					<MadeBy />
 				</div>
 				<div>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -3,7 +3,6 @@ import './App.scss';
 import Searchbar from './components/Searchbar';
 import Home from './components/Home';
 import Movie from './components/Movie';
-import MadeBy from './components/MadeBy';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -97,7 +96,6 @@ class App extends React.Component {
 							/>
 						</div>
 					)}
-					<MadeBy />
 				</div>
 			</div>
 		);

@@ -6,10 +6,7 @@
     background-color: var(--color-white);
   }
   &__container {
-    width: 55%;
-    @media screen and (max-width: 768px) {
-      width: 95%;
-    }
+    width: 90%;
     margin: 0 auto;
   }
 }
