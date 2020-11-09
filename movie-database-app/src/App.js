@@ -10,25 +10,25 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchClicked: false,
 			displayMovies: false,
 			searchByTitle: '',
 			moviesByName: [],
 			totalResults: 0,
 			searchButtonClicked: false,
 			page: 1,
-			numberOfPages: 0,
+			buttonPreviousPageClicked: false,
 		};
 		this.movieTitleInputHandler = this.movieTitleInputHandler.bind(this);
 		this.getMoviesByTitle = this.getMoviesByTitle.bind(this);
 		this.buttonPreviousPageClicked = this.buttonPreviousPageClicked.bind(this);
 		this.buttonNextPageClicked = this.buttonNextPageClicked.bind(this);
 	}
-	displayMovies = () => {
+
+	displayMovies = async () => {
 		this.getMoviesByTitle();
-		this.setState({
+		await this.setState({
 			displayMovies: !this.state.displayMovies,
-			searchClicked: !this.state.searchClicked,
+			searchButtonClicked: true,
 		});
 	};
 
@@ -38,32 +38,30 @@ class App extends React.Component {
 			searchByTitle: input.toLowerCase(),
 		});
 	}
+
 	getMoviesByTitle() {
 		axios({
 			method: 'GET',
 			url: `http://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle}&page=${this.state.page}`,
-			// ${this.state.page}
 		})
 			.then((res) => {
 				this.setState({
 					moviesByName: res.data.Search,
 					totalResults: res.data.totalResults,
-					searchButtonClicked: !this.statesearchButtonClicked,
-					numberOfPages: this.state.totalResults / 10,
 				});
 			})
 			.catch((err) => {
 				console.log('No movies here');
 			});
 	}
-	buttonPreviousPageClicked() {
-		this.setState({
+	async buttonPreviousPageClicked() {
+		await this.setState({
 			page: this.state.page - 1,
 		});
 		this.getMoviesByTitle();
 	}
-	buttonNextPageClicked() {
-		this.setState({
+	async buttonNextPageClicked() {
+		await this.setState({
 			page: this.state.page + 1,
 		});
 		this.getMoviesByTitle();
@@ -80,20 +78,26 @@ class App extends React.Component {
 					/>
 				</div>
 				<div className="App__container">
-					<div className="content mt-4">
-						{this.state.searchButtonClicked === false ? <Home /> : null}
-						<Movie
-							buttonPreviousPageClicked={this.buttonPreviousPageClicked}
-							buttonNextPageClicked={this.buttonNextPageClicked}
-							moviesByName={this.state.moviesByName}
-							totalResults={this.state.totalResults}
-							searchButtonClicked={this.state.searchButtonClicked}
-						/>
+					{this.state.moviesByName === undefined ? (
+						<div className="alert alert-danger mt-4" role="alert">
+							{' '}
+							Movie not found!
+						</div>
+					) : (
+						<div className="content mt-4">
+							{this.state.searchButtonClicked === false ? <Home /> : null}
+							<Movie
+								buttonPreviousPageClicked={this.buttonPreviousPageClicked}
+								buttonNextPageClicked={this.buttonNextPageClicked}
+								moviesByName={this.state.moviesByName}
+								totalResults={this.state.totalResults}
+								searchButtonClicked={this.state.searchButtonClicked}
+								page={this.state.page}
+								getMoviesByTitle={this.getMoviesByTitle}
+							/>
+						</div>
+					)}
 
-						{/* <div className="alert alert-danger" role="alert">
-								Movie not found!
-							</div> */}
-					</div>
 					<MadeBy />
 				</div>
 			</div>

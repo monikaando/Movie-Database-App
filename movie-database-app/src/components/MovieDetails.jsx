@@ -4,8 +4,6 @@ export default class MovieDetails extends React.Component {
 	render() {
 		return (
 			<div>
-				{/* {this.props.movieById.Poster !== 'N/A' ? <img src={this.props.movieById.Poster} alt="" /> : null}
-				<h3>{this.props.movieById.Title}</h3> */}
 				<h4>Plot</h4>
 				<h4>{this.props.movieById.Plot}</h4>
 				<h4>Actors</h4>
@@ -17,7 +15,6 @@ export default class MovieDetails extends React.Component {
 						</h4>
 					</div>
 				))}
-				{/* <h3>{this.props.movieById.Year}</h3> */}
 			</div>
 		);
 	}
