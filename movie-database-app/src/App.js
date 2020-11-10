@@ -15,7 +15,6 @@ class App extends React.Component {
 			totalResults: 0,
 			searchButtonClicked: false,
 			page: 1,
-			buttonPreviousPageClicked: false,
 		};
 		this.movieTitleInputHandler = this.movieTitleInputHandler.bind(this);
 		this.getMoviesByTitle = this.getMoviesByTitle.bind(this);

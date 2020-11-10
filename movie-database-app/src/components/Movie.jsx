@@ -29,7 +29,6 @@ export default class Movie extends React.Component {
 			.catch((err) => {
 				console.log('No movies here');
 			});
-		console.log(this.state.movieByID);
 	}
 	render() {
 		return (
@@ -68,40 +67,81 @@ export default class Movie extends React.Component {
 				) : null}
 				<div className="box d-flex justify-content-between flex-wrap">
 					{this.props.moviesByName.map((item, i) => (
-						<div
-							key={i}
-							className="box__movie d-flex justify-content-start mt-4 bg-white shadow bg-white rounded"
-						>
-							<div className="box__movie__poster">
-								{item.Poster !== 'N/A' ? (
-									<img src={item.Poster} alt="" />
-								) : (
-									<img
-										src="https://res.cloudinary.com/mokaweb/image/upload/v1604933899/Icons/no-poster-available.jpg"
-										alt=""
-									/>
-								)}
-							</div>
-							<div className="box__movie__details d-flex flex-column justify-content-between text-left">
-								<h5 className="ml-4 mr-2 mt-4">{item.Title}</h5>
-								{this.state.detailsButtonClicked === true && item.imdbID === this.state.movieId ? (
-									<MovieDetails movieById={this.state.movieById} />
-								) : null}
+						<React.Fragment>
+							{this.state.detailsButtonClicked === true && item.imdbID === this.state.movieId ? (
+								<div
+									key={i}
+									className="box__movie box__movie--fullwidth d-flex justify-content-start mt-4 bg-white shadow bg-white rounded"
+								>
+									<div className="box__movie__poster">
+										{item.Poster !== 'N/A' ? (
+											<img src={item.Poster} alt="" />
+										) : (
+											<img
+												src="https://res.cloudinary.com/mokaweb/image/upload/v1604933899/Icons/no-poster-available.jpg"
+												alt=""
+											/>
+										)}
+									</div>
+									<div className="box__movie__details d-flex flex-column justify-content-between text-left">
+										<h5 className="ml-4 mr-2 mt-4">{item.Title}</h5>
+										{this.state.detailsButtonClicked === true &&
+										item.imdbID === this.state.movieId ? (
+											<MovieDetails movieById={this.state.movieById} />
+										) : null}
 
-								<div className="d-flex justify-content-between border-top pt-4 pb-4">
-									<h5 className="box__movie__details__year ml-4 mt-3 font-weight-bold">
-										{item.Year}
-									</h5>
-									<Button
-										variant="primary"
-										onClick={() => this.displayMovieDetails(item.imdbID)}
-										className="pl-4 pr-4 mr-4 font-weight-bold"
-									>
-										DETAILS
-									</Button>
+										<div className="d-flex justify-content-between border-top pt-4 pb-4">
+											<h5 className="box__movie__details__year ml-4 mt-3 font-weight-bold">
+												{item.Year}
+											</h5>
+											<Button
+												variant="primary"
+												onClick={() => this.displayMovieDetails(item.imdbID)}
+												className="pl-4 pr-4 mr-4 font-weight-bold"
+											>
+												DETAILS
+											</Button>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
+							) : (
+								<div
+									key={i}
+									className="box__movie d-flex justify-content-start mt-4 bg-white shadow bg-white rounded"
+								>
+									<div className="box__movie__poster">
+										{item.Poster !== 'N/A' ? (
+											<img src={item.Poster} alt="" />
+										) : (
+											<img
+												src="https://res.cloudinary.com/mokaweb/image/upload/v1604933899/Icons/no-poster-available.jpg"
+												alt=""
+											/>
+										)}
+									</div>
+									<div className="box__movie__details d-flex flex-column justify-content-between text-left">
+										<h5 className="ml-4 mr-2 mt-4">{item.Title}</h5>
+										{this.state.detailsButtonClicked === true &&
+										item.imdbID === this.state.movieId ? (
+											<MovieDetails movieById={this.state.movieById} />
+										) : null}
+
+										<div className="d-flex justify-content-between border-top pt-4 pb-4">
+											<h5 className="box__movie__details__year ml-4 mt-3 font-weight-bold">
+												{item.Year}
+											</h5>
+											<Button
+												variant="primary"
+												onClick={() => this.displayMovieDetails(item.imdbID)}
+												className="pl-4 pr-4 mr-4 font-weight-bold"
+											>
+												DETAILS
+											</Button>
+										</div>
+									</div>
+								</div>
+							)}
+						</React.Fragment>
 					))}
 				</div>
 			</div>

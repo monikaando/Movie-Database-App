@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/MovieDetails.scss';
 
 export default class MovieDetails extends React.Component {
 	render() {
