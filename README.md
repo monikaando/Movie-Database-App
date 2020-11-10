@@ -6,8 +6,6 @@
 * [General info](#general-info)
 * [Stack](#stack)
 * [Content](#content)
-* [UX/UI](#uxui)
-* [Footer](#footer)
 * [Online version](#online-version)
 * [Visuals](#visuals)
 * [Contact](#contact)
@@ -43,66 +41,63 @@ Database of movies
     React, Axios, Bootstrap, Sass (with BEM)
 ## Content    
     The application is divided into two sections.
-    First sections is a navigation with logo and the search input field.
-    User can type the title of the film
+    * Navigation
+    First sections is the navigation with the logo and the search input field.
+    User can type the title of the film and search by pressing Enter or "Search" button.
 
+    * Pagination, counter, movies and movie details
+    The second section is showing the result of searching.
+    - Before searching user can see a home screen with the alert and short instruction.
+    - Buttons "Previous page" and "Next page" allows the user to switch between pages.
+    - Buttons are disabled if the user is on the first page (it is not possible to have page 0)
+      and the last page (there are no more pages to see)
+    - Page 1/10 is showing that the user is on the first page from all 10 pages.
+    - Search results show how many movies were found.
+    - If no movie was found, there is an alert: "Movie not found"
 
-    The second section is showing us a paged we choose.
+    - Below user can see 10 movies per page which were found by applying a user searching 
+      input and pagination to API call:
+      https://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle.toLowerCase()}&page=${this.state.page}
+    - Every movie has a poster, title, year and details button.
 
-    - Homepage has a title, gif and instruction.
-
-    - Random Fact button is taking us to the page where we can see one random choosed fact.
-    To do it I called: https://cat-fact.herokuapp.com/facts/random?animal_type=dog 
-    where we can use endpoints like: random and animal_type=dog
-
-    In HTML part choose to show the text (there is no user part available in random searching)
-    together with shuffle button, which is calling the function everytime is clicked.
-    
-    - All dogs' facts is taking us to the page where we can see all facts about dogs 
-    available in this API (around 40 for today)
-    To do it I called: https://cat-fact.herokuapp.com/facts/?animal_type=dog
-    where we can use endpoint: animal_type=dog
-
-    In HTML part I used {this.state.allDogsFacts..map((item,i)=>(....))} to iterate through
-    the all elements in the array and show text, user's name and surname. 
-
-    I also excluded testing message (which is appearing in API by using if statement:
-    {!item.text.toLowerCase().includes("testing") ? () :()}
-
-## UX/UI
-    User can:
-    - click buttons on the left side and:
-        * go to the Homepage 
-        * see random fact about dogs
-            - by clicking on shuffle button, user can see the next random fact
-    - in the window with a scrollbar user can see all available in API facts about dogs
-    and name and surname of the person who posted this fact
-        
-## Footer
-    An additional element with the link to my portfolio.
+    - Movie details are accessible by clicking the "Details" button and are called
+      by the id of the movie which was clicked: https://www.omdbapi.com/?apikey=9831d2b3&i=${id}
+    - On big screens details of the clicked movie is expanding to the full width, on medium screens
+      details are expanding on the right side of the poster in the next column, 
+      for mobile details are expanding under the poster in the same column
+    - User can close details using "Close button"
 
 ## Online version 
 <a href="https://mswidzinska.github.io/Movie-Database-App/">https://mswidzinska.github.io/Movie-Database-App/</a>
 
 ## Visuals
-Click a <a href="https://youtu.be/NLCn2qtxro0"><b>video</b></a> and see how DoGGo App works.
+Click a <a href="https://youtu.be/7nGHQtX-3Nw"><b>video</b></a> and see how Movie App works.
 
 <b>Desktop version:</b>
 <br><br>
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1604489652/DoGGoApp/1-DoGGo-App.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605030555/MovieApp/Movie-App-Homepage.png" />
 <br><br>
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1604489652/DoGGoApp/2-DoGGo-App.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605030557/MovieApp/Movie-App-1.png" />
 <br><br>
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1604489655/DoGGoApp/3-DoGGo-App.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605030556/MovieApp/Movie-App-2.png" />
+<br><br>
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605030555/MovieApp/Movie-App-Alert.png" />
+<br><br>
+
+<b>Tablet version:</b>
+<br><br>
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605031367/MovieApp/Movie-App-1-tablet.png" />
+<br><br>
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605031365/MovieApp/Movie-App-2-tablet.png" />
 <br><br>
 
 <b>Mobile version:</b>
 <br><br>
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1604489650/DoGGoApp/1-mob-DoGGo-App.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605031364/MovieApp/Movie-App-Homepage-mobile.png" />
 <br><br>
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1604489650/DoGGoApp/2-mob-DoGGo-App.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605031365/MovieApp/Movie-App-2-mobile.png" />
 <br><br>
-<img src="https://res.cloudinary.com/mokaweb/image/upload/v1604489649/DoGGoApp/3-mob-DoGGo-App.png" />
+<img src="https://res.cloudinary.com/mokaweb/image/upload/v1605031365/MovieApp/Movie-App-3-mobile.png" />
 <br><br>
 
 ## Contact

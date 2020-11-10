@@ -20,6 +20,7 @@ class App extends React.Component {
 		this.getMoviesByTitle = this.getMoviesByTitle.bind(this);
 		this.buttonPreviousPageClicked = this.buttonPreviousPageClicked.bind(this);
 		this.buttonNextPageClicked = this.buttonNextPageClicked.bind(this);
+		this.clear = this.clear.bind(this);
 	}
 
 	displayMovies = async () => {
@@ -28,8 +29,15 @@ class App extends React.Component {
 			displayMovies: !this.state.displayMovies,
 			searchButtonClicked: true,
 		});
+		this.clear();
 	};
-
+	clear() {
+		if (this.state.searchButtonClicked === true) {
+			this.setState({
+				page: 1,
+			});
+		}
+	}
 	movieTitleInputHandler(e: React.ChangeEvent<HTMLInputElement>) {
 		this.setState({
 			searchByTitle: e.target.value,

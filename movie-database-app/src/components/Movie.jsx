@@ -78,7 +78,7 @@ export default class Movie extends React.Component {
 											<img src={item.Poster} alt="" />
 										) : (
 											<img
-												src="https://res.cloudinary.com/mokaweb/image/upload/v1604933899/Icons/no-poster-available.jpg"
+												src="https://res.cloudinary.com/mokaweb/image/upload/v1605030501/MovieApp/no-poster-available.jpg"
 												alt=""
 											/>
 										)}
@@ -114,7 +114,7 @@ export default class Movie extends React.Component {
 											<img src={item.Poster} alt="" />
 										) : (
 											<img
-												src="https://res.cloudinary.com/mokaweb/image/upload/v1604933899/Icons/no-poster-available.jpg"
+												src="https://res.cloudinary.com/mokaweb/image/upload/v1605030501/MovieApp/no-poster-available.jpg"
 												alt=""
 											/>
 										)}
