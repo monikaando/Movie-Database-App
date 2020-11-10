@@ -17,7 +17,7 @@ class Searchbar extends React.Component {
 					<MadeBy />
 				</div>
 				<div>
-					<FormGroup className="d-flex ">
+					<FormGroup className="d-flex flex-column flex-md-row">
 						<InputGroup>
 							<FormControl
 								type="input"
