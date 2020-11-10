@@ -7,16 +7,17 @@ import '../styles/Searchbar.scss';
 class Searchbar extends React.Component {
 	render() {
 		return (
-			<Navbar expand="lg" className="d-flex justify-content-between search-container pt-1 pb-2 pl-0 pr-0">
-				<div>
+			<Navbar
+				expand="lg"
+				className="search-container d-flex flex-md-row flex-column justify-content-between pt-1 pb-2 pl-0 pr-0"
+			>
+				<div className="mb-4 mb-md-0">
 					<Navbar.Brand href="/" className="font-weight-bold">
 						OMDB Search
 					</Navbar.Brand>
 					<MadeBy />
 				</div>
 				<div>
-					{/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
-					<Navbar.Collapse id="basic-navbar-nav"> */}
 					<Form inline>
 						<FormControl
 							type="text"
@@ -25,11 +26,14 @@ class Searchbar extends React.Component {
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.props.movieTitleInputHandler(e)}
 							className="mr-sm-2"
 						/>
-						<Button variant="primary" onClick={this.props.displayMovies}>
+						<Button
+							variant="primary"
+							className="search-container__button"
+							onClick={this.props.displayMovies}
+						>
 							Search
 						</Button>
 					</Form>
-					{/* </Navbar.Collapse> */}
 				</div>
 			</Navbar>
 		);

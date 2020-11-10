@@ -45,9 +45,6 @@ export default class Movie extends React.Component {
 									<Button onClick={this.props.buttonPreviousPageClicked}>Previous page</Button>
 								</div>
 							)}
-							<h6 className="mt-4 text-primary font-weight-bold">
-								page {this.props.page}/{Math.ceil(this.props.totalResults / 10)}
-							</h6>
 							{this.props.page > 0 && this.props.page === Math.ceil(this.props.totalResults / 10) ? (
 								<div>
 									<Button className="disabled">Next page</Button>
@@ -59,7 +56,10 @@ export default class Movie extends React.Component {
 							)}
 						</div>
 						<div className="d-flex flex-column mt-3 mb-3">
-							<h6 className="mt-3 mb-3 text-success">
+							<h6 className="text-primary font-weight-bold">
+								page {this.props.page}/{Math.ceil(this.props.totalResults / 10)}
+							</h6>
+							<h6 className="mt-3 text-success">
 								Search results: <b>{this.props.totalResults}</b>
 							</h6>
 						</div>

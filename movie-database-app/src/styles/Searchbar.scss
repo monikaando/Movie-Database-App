@@ -1,4 +1,10 @@
 .search-container {
-    width:85%;
+    width: 85%;
     margin: 0 auto;
+    @media screen and (max-width: 575px) {
+        &__button {
+            width: 100%;
+            margin-top: 5%;
+        }
+    }
 }
