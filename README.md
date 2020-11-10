@@ -11,15 +11,15 @@
 * [Contact](#contact)
 
 ## Setup
-To run the application: go to "movie-database-app" folder, 
-in terminal type:
-npm i
-npm start
-
-node: v10.16.0
-React: 16.14.0
-axios: 0.21.0
-bootstrap: 4.5.3
+To run the application: go to "movie-database-app" folder, <br>
+in terminal type:<br>
+npm i<br>
+npm start<br>
+<br><br>
+node: v10.16.0<br>
+React: 16.14.0<br>
+axios: 0.21.0<br>
+bootstrap: 4.5.3<br>
 
 ## Name
 Movie App
@@ -57,7 +57,8 @@ Database of movies
 
     - Below user can see 10 movies per page which were found by applying a user searching 
       input and pagination to API call:
-      https://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle.toLowerCase()}&page=${this.state.page}
+      https://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle.toLowerCase()}
+      &page=${this.state.page}
     - Every movie has a poster, title, year and details button.
 
     - Movie details are accessible by clicking the "Details" button and are called
