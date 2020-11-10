@@ -1,14 +1,5 @@
 .made-by {
-    position: relative !important;
     p {
         font-size:8px;
-    }
-}
-@media screen and (max-width: 768px) {
-    .made-by {
-        position: relative !important;
-        p{
-            font-size:3px;
-        }
     }
 }

@@ -15,23 +15,21 @@ class Searchbar extends React.Component {
 					<MadeBy />
 				</div>
 				<div>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-					<Navbar.Collapse id="basic-navbar-nav">
-						<Form inline>
-							<FormControl
-								type="text"
-								placeholder="Search a movie"
-								value={this.props.searchByTitle}
-								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-									this.props.movieTitleInputHandler(e)
-								}
-								className="mr-sm-2"
-							/>
-							<Button variant="primary" onClick={this.props.displayMovies}>
-								Search
-							</Button>
-						</Form>
-					</Navbar.Collapse>
+					{/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+					<Navbar.Collapse id="basic-navbar-nav"> */}
+					<Form inline>
+						<FormControl
+							type="text"
+							placeholder="Search a movie"
+							value={this.props.searchByTitle}
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.props.movieTitleInputHandler(e)}
+							className="mr-sm-2"
+						/>
+						<Button variant="primary" onClick={this.props.displayMovies}>
+							Search
+						</Button>
+					</Form>
+					{/* </Navbar.Collapse> */}
 				</div>
 			</Navbar>
 		);

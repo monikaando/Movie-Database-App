@@ -17,7 +17,7 @@ export default class Movie extends React.Component {
 	displayMovieDetails(id) {
 		axios({
 			method: 'GET',
-			url: `http://www.omdbapi.com/?apikey=9831d2b3&i=${id}`,
+			url: `https://www.omdbapi.com/?apikey=9831d2b3&i=${id}`,
 		})
 			.then((res) => {
 				this.setState({
@@ -65,13 +65,13 @@ export default class Movie extends React.Component {
 						</div>
 					</div>
 				) : null}
-				<div className="box d-flex justify-content-between flex-wrap">
+				<div className="box d-flex justify-content-between flex-wrap mb-5">
 					{this.props.moviesByName.map((item, i) => (
-						<React.Fragment>
+						<React.Fragment key={i}>
 							{this.state.detailsButtonClicked === true && item.imdbID === this.state.movieId ? (
 								<div
 									key={i}
-									className="box__movie box__movie--fullwidth d-flex justify-content-start mt-4 bg-white shadow bg-white rounded"
+									className="box__movie box__movie--fullwidth d-flex flex-column flex-sm-row justify-content-start mt-4 bg-white shadow bg-white rounded"
 								>
 									<div className="box__movie__poster">
 										{item.Poster !== 'N/A' ? (
@@ -90,16 +90,16 @@ export default class Movie extends React.Component {
 											<MovieDetails movieById={this.state.movieById} />
 										) : null}
 
-										<div className="d-flex justify-content-between border-top pt-4 pb-4">
+										<div className="d-flex justify-content-between border-top mt-4 pt-4 pb-4">
 											<h5 className="box__movie__details__year ml-4 mt-3 font-weight-bold">
 												{item.Year}
 											</h5>
 											<Button
-												variant="primary"
+												variant="danger"
 												onClick={() => this.displayMovieDetails(item.imdbID)}
-												className="pl-4 pr-4 mr-4 font-weight-bold"
+												className="pl-4 pr-4 mr-2 mr-4 font-weight-bold"
 											>
-												DETAILS
+												CLOSE
 											</Button>
 										</div>
 									</div>
@@ -107,7 +107,7 @@ export default class Movie extends React.Component {
 							) : (
 								<div
 									key={i}
-									className="box__movie d-flex justify-content-start mt-4 bg-white shadow bg-white rounded"
+									className="box__movie d-flex flex-column flex-sm-row justify-content-start mt-4 bg-white shadow bg-white rounded"
 								>
 									<div className="box__movie__poster">
 										{item.Poster !== 'N/A' ? (
@@ -126,14 +126,14 @@ export default class Movie extends React.Component {
 											<MovieDetails movieById={this.state.movieById} />
 										) : null}
 
-										<div className="d-flex justify-content-between border-top pt-4 pb-4">
+										<div className="d-flex justify-content-between border-top mt-4 pt-4 pb-4">
 											<h5 className="box__movie__details__year ml-4 mt-3 font-weight-bold">
 												{item.Year}
 											</h5>
 											<Button
 												variant="primary"
 												onClick={() => this.displayMovieDetails(item.imdbID)}
-												className="pl-4 pr-4 mr-4 font-weight-bold"
+												className="pl-4 pr-4 mr-2 mr-4 font-weight-bold"
 											>
 												DETAILS
 											</Button>

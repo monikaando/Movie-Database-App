@@ -40,7 +40,7 @@ class App extends React.Component {
 	getMoviesByTitle() {
 		axios({
 			method: 'GET',
-			url: `http://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle}&page=${this.state.page}`,
+			url: `https://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle}&page=${this.state.page}`,
 		})
 			.then((res) => {
 				this.setState({
