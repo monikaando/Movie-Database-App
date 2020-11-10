@@ -1,7 +1,6 @@
 import React from 'react';
 import MadeBy from './MadeBy';
-
-import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, FormControl, Button, InputGroup, FormGroup } from 'react-bootstrap';
 import '../styles/Searchbar.scss';
 
 class Searchbar extends React.Component {
@@ -18,14 +17,23 @@ class Searchbar extends React.Component {
 					<MadeBy />
 				</div>
 				<div>
-					<Form inline>
-						<FormControl
-							type="text"
-							placeholder="Search a movie"
-							value={this.props.searchByTitle}
-							onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.props.movieTitleInputHandler(e)}
-							className="mr-sm-2"
-						/>
+					<FormGroup className="d-flex ">
+						<InputGroup>
+							<FormControl
+								type="input"
+								placeholder="Search a movie"
+								value={this.props.searchByTitle}
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+									this.props.movieTitleInputHandler(e)
+								}
+								className="mr-sm-2"
+								onKeyPress={(event) => {
+									if (event.key === 'Enter') {
+										this.props.displayMovies();
+									}
+								}}
+							/>
+						</InputGroup>
 						<Button
 							variant="primary"
 							className="search-container__button"
@@ -33,7 +41,7 @@ class Searchbar extends React.Component {
 						>
 							Search
 						</Button>
-					</Form>
+					</FormGroup>
 				</div>
 			</Navbar>
 		);

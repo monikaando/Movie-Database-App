@@ -52,6 +52,7 @@ class App extends React.Component {
 				console.log('No movies here');
 			});
 	}
+
 	async buttonPreviousPageClicked() {
 		await this.setState({
 			page: this.state.page - 1,
