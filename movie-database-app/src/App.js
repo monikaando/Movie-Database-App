@@ -31,16 +31,17 @@ class App extends React.Component {
 	};
 
 	movieTitleInputHandler(e: React.ChangeEvent<HTMLInputElement>) {
-		let input = e.target.value;
 		this.setState({
-			searchByTitle: input.toLowerCase(),
+			searchByTitle: e.target.value,
 		});
 	}
 
 	getMoviesByTitle() {
 		axios({
 			method: 'GET',
-			url: `https://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle}&page=${this.state.page}`,
+			url: `https://www.omdbapi.com/?apikey=9831d2b3&s=${this.state.searchByTitle.toLowerCase()}&page=${
+				this.state.page
+			}`,
 		})
 			.then((res) => {
 				this.setState({
