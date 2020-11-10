@@ -15,7 +15,7 @@ To run the application: go to "movie-database-app" folder, <br>
 in terminal type:<br>
 npm i<br>
 npm start<br>
-<br><br>
+<br>
 node: v10.16.0<br>
 React: 16.14.0<br>
 axios: 0.21.0<br>
