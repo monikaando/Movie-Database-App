@@ -11,7 +11,7 @@ class Searchbar extends React.Component {
 				className="search-container d-flex flex-md-row flex-column justify-content-between pt-1 pb-2 pl-0 pr-0"
 			>
 				<div className="mb-4 mb-md-0">
-					<Navbar.Brand href="/" className="font-weight-bold">
+					<Navbar.Brand href="/Movie-Database-App/" className="font-weight-bold">
 						OMDB Search
 					</Navbar.Brand>
 					<MadeBy />
